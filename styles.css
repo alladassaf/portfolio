@@ -16,6 +16,8 @@
 html {
     font-size: 1em;
     font-family: 'Rowdies', cursive;
+    scroll-behavior: smooth;
+    scroll-padding-top: 100px;
 }
 
 body {
@@ -57,6 +59,13 @@ nav ul {
     list-style: none;
     display: flex;
     gap: 10px;
+}
+
+.indicator {
+    position: absolute;
+    height: 3px;
+    background-color: black;
+    transform: translateY(-50%);
 }
 
 nav li {
@@ -104,22 +113,18 @@ section.hero {
 }
 
 .projects {
-    position: relative;
     width: 100%;
     height: 550px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 40px;
 }
 
 .projects .card {
-    --translate-y: -50%;
-    --translate-x: 0;
-
-
-    position: absolute;
-    top: 50%;
-    transform: translate(var(--translate-x), var(--translate-y));
+    grid-column: span 1;
     border-radius: 10px;
     overflow: hidden;
-    width: 300px;
+    /* width: 300px; */
     height: 400px;
     display: flex;
     flex-direction: column;
@@ -127,44 +132,37 @@ section.hero {
     box-shadow: 2px 2px 8px black;
     border: 1px solid black;
     user-select: none;
+    opacity: 0;
+
+    transition: opacity 200ms ease-in-out;
 
 }
 
-.card:first-child {
-    --translate-x: -30%;
-    left: 30%;
-    z-index: 1;
-}
-
-.card:nth-child(2) {
-    --translate-x: -50%;
-    left: 50%;
-    z-index: 2;
-}
-
-.card:nth-child(3) {
-    --translate-x: -70%;
-    left: 70%;
-    z-index: 1;
+.projects .card.show {
+    opacity: 1;
 }
 
 .card .top {
-    flex: 0 0 40%;
-    background-image: url(./Images/background.jpg);
+    flex: 1;
+    background-image: url(.assets/Images/background.jpg);
     background-size: cover;
-}
-
-.card:hover {
-    z-index: 99999;
+    background-position: center;
 }
 
 .card .bottom {
-    padding: 10px;
-    flex: 1;
+    flex: 0 0 55%;
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    overflow: hidden;
+
 }
 
+.bottom .bottom-content {
+    padding: 10px;
+    display: grid;
+    place-content: center;
+    flex: 1;
+}
 .bottom p {
     text-align: center;
 }
@@ -181,25 +179,67 @@ section.hero {
     font-size: 1.3rem;
 }
 
+/* Resume Section */
+
+section.resume-container {
+    
+}
+
+.resume-container iframe {
+    width: 100%;
+    height: 0;
+
+    transition: height 500ms ease-in-out;
+}
+
+.resume-container iframe.show {
+    height: 800px;
+}
+
 /* Skills Section */
 
-.skills {
+.skills-container {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     gap: 20px;
 }
 
-.skills .skill {
+.skills-container .skill {
     aspect-ratio: 1 / 1;
-    box-shadow: 0 0 3px hsl(var(--hue), var(--saturation), var(--lightness));
-    border: 1px solid hsl(var(--hue), var(--saturation), var(--lightness));
+}
+
+.skills-container .skill div{
+    width: 100%;
+    height: 100%;
+    box-shadow: 0 0 5px black,
+                2px 2px 3px black;
     display: flex;
     justify-content: center;
     align-items: center;
+    transform: scale(0);
+
+    transition: transform 400ms ease-in-out;
+}
+
+.skills-container .skill div:nth-child(2) {
+    transition-delay: 200ms;
+}
+
+.skills-container .skill div:nth-child(3) {
+    transition-delay: 400ms;
+}
+
+.skills-container .skill div:nth-child(4) {
+    transition-delay: 600ms;
+}
+
+.skills-container .skill.show div{
+    transform: scale(1);
 }
 
 .skill i {
     font-size: 7.3rem;
+    color: #ccc;
 }
 
 /* About Styles */
@@ -210,11 +250,24 @@ section.about {
     gap: 30px;
 }
 
+.about .my-img,
+.about .about-me {
+    transform: translateY(40%);
+    opacity: 0;
+
+    transition: transform 450ms ease-in-out, opacity 350ms ease-in-out;
+}
+
+.about .my-img.show,
+.about .about-me.show {
+    transform: translateY(0);
+    opacity: 1;
+}
+
 .about .my-img {
     grid-column: 1 / 2;
-    background-image: url(./Images/grad.JPG);
+    background-image: url(.assets/Images/grad.JPG);
     background-size: cover;
-
 }
 
 .about .about-me {
@@ -243,11 +296,18 @@ section.about {
     padding: 10px;
     border-radius: 5px;
     background-color: hsl(var(--hue), var(--saturation), var(--lightness));
+    user-select: none;
+    -webkit-user-select: none;
 }
 
 .contact-info li i {
     margin-right: 5px;
     color: blue;
+}
+
+.contact-info li:last-child a {
+    text-decoration: none;
+    color: black;
 }
 
 footer {
