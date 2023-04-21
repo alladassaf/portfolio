@@ -1,15 +1,18 @@
 const navTags = document.querySelectorAll('ul li')
 const sections = document.querySelectorAll('section')
 const indicator = document.querySelector('.indicator')
+
+
+
 const options = {
-    threshold: 0.5
+    threshold: 0.2
 }
 
-window.onscroll = () => {
+/* window.onscroll = () => {
     if (pageYOffset >= 300) {
         
     }
-}
+} */
 
 
 const sectionObserver = new IntersectionObserver(entries => {
@@ -21,8 +24,10 @@ const sectionObserver = new IntersectionObserver(entries => {
                     const sectionChildren = [...sec.children]
                     if (sections[sections.length - 1] == entry.target.parentElement) {
                         sectionChildren.forEach(child => {
-                            sectionObserver.unobserve(child)
-                            console.log("unobserved")
+                            if (sectionChildren[sectionChildren.length - 1].classList.contains("show")) {
+                                sectionObserver.unobserve(child)
+                                console.log("unobserved")
+                            }
                         })
                     }
                 }

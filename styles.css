@@ -14,8 +14,8 @@
 }
 
 html {
-    font-size: 1em;
     font-family: 'Rowdies', cursive;
+    font-size: 1em;
     scroll-behavior: smooth;
     scroll-padding-top: 100px;
 }
@@ -98,8 +98,7 @@ main section:last-child {
 }
 
 section.hero {
-    min-height: calc(100vh - 150px);
-    max-height: 800px;
+    max-height: 500px;
     padding-left: 40px;
     display: flex;
     align-items: center;
@@ -114,7 +113,7 @@ section.hero {
 
 .projects {
     width: 100%;
-    height: 550px;
+    min-height: 550px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 40px;
@@ -144,7 +143,7 @@ section.hero {
 
 .card .top {
     flex: 1;
-    background-image: url(.assets/Images/background.jpg);
+    background-image: url(./assets/Images/background.jpg);
     background-size: cover;
     background-position: center;
 }
@@ -205,6 +204,7 @@ section.resume-container {
 }
 
 .skills-container .skill {
+    grid-column: span 1;
     aspect-ratio: 1 / 1;
 }
 
@@ -266,7 +266,7 @@ section.about {
 
 .about .my-img {
     grid-column: 1 / 2;
-    background-image: url(.assets/Images/grad.JPG);
+    background-image: url(./assets/Images/grad.JPG);
     background-size: cover;
 }
 
@@ -316,4 +316,168 @@ footer {
     background-color: black;
     color: white;
     text-align: right;
+}
+
+@media (max-width: 992px) {
+    section.hero {
+        height: auto;
+    }
+    .hero h1 {
+        font-size: 2.8rem;
+    }
+    .skills-container .skill {
+        grid-column: span 2;
+    }
+
+    section.about {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 500px;
+        gap: 30px;
+    }
+    
+    .about .my-img,
+    .about .about-me {
+        transform: translateY(40%);
+        opacity: 0;
+    
+        transition: transform 450ms ease-in-out, opacity 350ms ease-in-out;
+    }
+    
+    .about .my-img.show,
+    .about .about-me.show {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    
+    .about .my-img {
+        grid-column: 1 / 2;
+        background-image: url(./assets/Images/grad.JPG);
+        background-size: cover;
+    }
+    
+    .about .about-me {
+        padding: 20px;
+        grid-column: 2 / 3;
+        border: 2px solid hsl(var(--hue), var(--saturation), var(--lightness));
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .about-me p {
+        margin-top: 0;
+        color: white;
+        line-height: 1.5;
+        font-size: 1.1rem;
+    }
+    
+    .about-me .contact-info {
+        margin-top: auto;
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .contact-info li {
+        padding: 10px;
+        border-radius: 5px;
+        background-color: hsl(var(--hue), var(--saturation), var(--lightness));
+        user-select: none;
+        -webkit-user-select: none;
+    }
+    
+    .contact-info li i.fa-linkedin-in {
+        margin-right: 5px;
+        color: blue;
+    }
+    
+    .contact-info li:last-child a {
+        text-decoration: none;
+        color: black;
+    }
+}
+
+@media (max-width: 500px) {
+
+    main > *:not(:last-child) {
+        margin-bottom: 200px;
+    }
+    
+    main section:last-child {
+        margin-bottom: 50px;
+    }
+
+    .hero h1 {
+        font-size: 2rem;
+        width: 100%;
+        
+    }
+
+
+    .projects .card {
+        grid-column: span 3;
+    }
+    section.about {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 500px 400px;
+        gap: 30px;
+    }
+    
+    .about .my-img,
+    .about .about-me {
+        transform: translateY(40%);
+        opacity: 0;
+    
+        transition: transform 450ms ease-in-out, opacity 350ms ease-in-out;
+    }
+    
+    .about .my-img.show,
+    .about .about-me.show {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    
+    .about .my-img {
+        grid-column: 1 / 3;
+        background-image: url(./assets/Images/grad.JPG);
+        background-size: cover;
+    }
+    
+    .about .about-me {
+        padding: 20px;
+        grid-column: 1 / 3;
+        border: 2px solid hsl(var(--hue), var(--saturation), var(--lightness));
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .about-me p {
+        margin-top: 0;
+        color: white;
+        line-height: 1.5;
+        font-size: 1rem;
+    }
+    
+    .about-me .contact-info {
+        margin-top: auto;
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .contact-info li {
+        padding: 10px;
+        border-radius: 5px;
+        background-color: hsl(var(--hue), var(--saturation), var(--lightness));
+        user-select: none;
+        -webkit-user-select: none;
+    }
+    
+    .contact-info li i.fa-linkedin-in {
+        margin-right: 5px;
+        color: blue;
+    }
 }
