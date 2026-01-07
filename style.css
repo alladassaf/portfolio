@@ -18,7 +18,7 @@ html {
     font-size: 1em;
     scroll-behavior: smooth;
 
-    --gutter: 20vw;
+    --gutter: 15vw;
     --primary-clr: hsl(243, 100%, 69%);
     --secondary-clr: #65ADE0;
     --text-clr: #4841ce;
@@ -115,7 +115,7 @@ main svg {
 }
 
 main .container {
-    width: calc(100% - var(--gutter));
+    width: calc(100% - (var(--gutter) * 2));
     margin: auto;
 }
 
@@ -217,7 +217,7 @@ main .container .projects {
 }
 
 .anchor_container:nth-child(1) .pr_container .top {
-    background-image: url(./Images/card_slider.png);
+    background-image: url(./Images/coolSmells.png);
 }
 
 .anchor_container:nth-child(2) .pr_container .top {
