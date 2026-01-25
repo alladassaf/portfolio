@@ -124,15 +124,25 @@ main .container > *:not(:first-child) {
 }
 
 main .container .projects {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    display: flex;
+    flex-flow: row wrap;
     gap: 25px;
 }
 
 .anchor_container {
-    grid-column: span 1;
+    flex: 1 0 calc(33% - 25px);
     text-decoration: none;
 }
+
+/* .anchor_container:nth-child(4) {
+    grid-column: 1 / 2;
+    text-decoration: none;
+}
+
+.anchor_container:nth-child(5) {
+    grid-column: 2 / 4;
+
+} */
 
 .projects .pr_container {
     position: relative;
@@ -199,9 +209,42 @@ main .container .projects {
 .bottom .langueges {
     display: flex;
     align-items: center;
-    gap: 8px;
-    font-size: 1.195rem;
+    gap: 15px;
+}
 
+.langueges span {
+    padding: 0 5px;
+    position: relative;
+}
+
+.langueges span::before {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    right: 0;
+    height: 1.5px;
+    background-color: #ccc;
+}
+
+.langueges span i {
+    font-size: 1.8rem;
+}
+
+.langueges span i[class*="html5"] {
+    color: #E64E27;
+}
+
+.langueges span i[class*="css3"] {
+    color: #1463A0;
+}
+
+.langueges span i[class*="js"] {
+    color: #E6C72F;
+}
+
+.langueges span i[class*="react"] {
+    color: #61DBFB;
 }
 
 .langueges .link {
@@ -226,6 +269,14 @@ main .container .projects {
 
 .anchor_container:nth-child(3) .pr_container .top {
     background-image: url(./Images/quizzez.png);
+}
+
+.anchor_container:nth-child(4) .pr_container .top {
+    background-image: url(./Images/react_form.png);
+}
+
+.anchor_container:nth-child(5) .pr_container .top {
+    background-image: url(./Images/chicks_n_go.png);
 }
 
 .about-container {
@@ -285,9 +336,9 @@ main .container .projects {
 }
 
 .certs section {
-    flex: 0 0 80%;
+    flex: 0 0 100%;
     display: flex;
-    flex-direction: column;
+    flex-flow: row wrap;
     gap: 10px;
     
 }
@@ -296,6 +347,7 @@ main .container .projects {
     position: relative;
     margin-bottom: 10px;
     padding: 5px;
+    flex: 0 0 100%;
     text-align: center;
     background-color: var(--secondary-clr);
 }
@@ -314,10 +366,9 @@ main .container .projects {
 .certs a {
     position: relative;
     padding: 10px 10px 10px 5px;
-    width: 100%;
-    /* height: 100%; */
+    flex: 1 0 calc(50% - 10px);
     text-decoration: none;
-    font-size: 1.3rem;
+    font-size: 1rem;
     color: var(--text-clr);
     background-color: var(--cta-clr);
     display: flex;
@@ -355,10 +406,17 @@ footer .text {
     text-align: center;
     align-self: flex-end;
     font-size: 1.3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-
 footer .text a {
-    color: white;
+    display: flex;
+    align-items: flex-end;
+}
+footer .text i {
+    font-size: 1.8rem;
+    color: #007FBC;
 }
 
 
